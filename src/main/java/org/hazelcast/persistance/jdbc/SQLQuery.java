@@ -6,11 +6,11 @@ package org.hazelcast.persistance.jdbc;
  */
 public interface SQLQuery {
 
-	String INSERT_QUERY = "INSERT INTO tbl_hazelmap(map_key,map_value) values(%s,%s)";
+	String INSERT_QUERY = "INSERT into tbl_hazelmap values(%s,'%s')";
 	String UPDATE_QUERY = "UPDATE tbl_hazelmap SET map_value=%s WHERE map_key=%s";
-	String SELECT_QUERY = "SELECT map_value FROM tbl_hazelmap WHERE map_key=%s";
+	String SELECT_QUERY = "SELECT map_value from tbl_hazelmap where map_key =%s";
 	String ALL_KEYS = "SELECT map_key FROM  tbl_hazelmap";
-	String DELETE_KEY = "DELETE FROM tbl_hazelmap WHERE map_key=%s";
+	String DELETE_KEY = "DELETE from tbl_hazelmap WHERE map_key = %s";
 
 
 }
