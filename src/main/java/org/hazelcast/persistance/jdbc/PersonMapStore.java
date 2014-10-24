@@ -1,6 +1,8 @@
 package org.hazelcast.persistance.jdbc;
 
 import com.hazelcast.core.MapStore;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,29 +16,31 @@ import java.util.Set;
 import static java.lang.String.format;
 
 /**
+ * This is Sample application
  * Created by Pubudu Dissanayake on 10/23/14.
  * pubudud@wso2.com
  */
 public class PersonMapStore implements MapStore<Long, Person>,SQLQuery {
-	private Connection con = null;
+	private Log LOGGER = LogFactory.getLog(PersonMapStore.class);
+	private Connection connection = null;
 
 	public PersonMapStore() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hazel_db", "root",
+			// we can define this in our data-source.xml and refer it here though
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hazel_db", "root",
 			  "root");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} catch (ClassNotFoundException e) {
-			System.out.println("Where is my MySQL JDBC Driver?");
-			e.printStackTrace();
+			LOGGER.error("Where is my MySQL JDBC Driver?",e);
 		}
 	}
 
 	@Override
 	public void store(Long key, Person person) {
 		try {
-			con.createStatement().executeUpdate(
+			connection.createStatement().executeUpdate(
 			  format(INSERT_QUERY, key, person.name));
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -52,9 +56,9 @@ public class PersonMapStore implements MapStore<Long, Person>,SQLQuery {
 
 	@Override
 	public void delete(Long key) {
-		System.out.println("Delete:" + key);
+		LOGGER.info("Deleted entry:" + key);
 		try {
-			con.createStatement().executeUpdate(
+			connection.createStatement().executeUpdate(
 			  format(DELETE_KEY, key));
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -70,7 +74,7 @@ public class PersonMapStore implements MapStore<Long, Person>,SQLQuery {
 	@Override
 	public Person load(Long aLong) {
 		try {
-			ResultSet resultSet = con.createStatement().executeQuery(
+			ResultSet resultSet = connection.createStatement().executeQuery(
 			  format(SELECT_QUERY, aLong));
 			try {
 				if (!resultSet.next()) return null;

@@ -4,7 +4,18 @@ http://www.hazelcast.com/schema/config/hazelcast-config-3.2.xsd"
            xmlns="http://www.hazelcast.com/schema/config">
     <map name="personMap">
         <map-store enabled="true">
+            <!--
+            Name of the class implementing MapLoader and/or MapStore.
+            The class should implement at least of these interfaces and
+            contain no-argument constructor. Note that the inner classes are not supported.
+            -->
             <class-name>org.hazelcast.persistance.jdbc.PersonMapStore</class-name>
+            <!--
+             write-delay-seconds property to 0, This means the entries will be put to the data store
+             synchronously.MapStore can be configured as write-behind by setting the write-delay-seconds
+             property to a value bigger than 0.
+             more info - http://docs.hazelcast.org/docs/2.2/manual/html-single/#MapPersistence
+            -->
             <write-delay-seconds>0</write-delay-seconds>
         </map-store>
     </map>

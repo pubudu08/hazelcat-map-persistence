@@ -8,32 +8,37 @@
     <artifactId>hazelcat-map-persistence</artifactId>
     <version>1.0.0</version>
 
-    <distributionManagement>
+
+    <repositories>
+        <!-- WSO2 released artifact repository -->
         <repository>
-            <id>wso2-maven2-repository</id>
-            <name>WSO2 Maven2 Repository</name>
-            <url>scp://dist.wso2.org/home/httpd/dist.wso2.org/maven2/</url>
+            <id>wso2.releases</id>
+            <name>WSO2 Releases Repository</name>
+            <url>http://maven.wso2.org/nexus/content/repositories/releases/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>ignore</checksumPolicy>
+            </releases>
         </repository>
-    </distributionManagement>
+    </repositories>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.hazelcast</groupId>
-                <artifactId>hazelcast</artifactId>
-                <version>3.2</version>
-            </dependency>
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>5.1.6</version>
-            </dependency>
-            <dependency>
-                <artifactId>org.wso2.carbon.logging</artifactId>
-                <groupId>org.wso2.carbon</groupId>
-                <version>4.2.0</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast</artifactId>
+            <version>3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.6</version>
+        </dependency>
+        <dependency>
+            <artifactId>org.wso2.carbon.logging</artifactId>
+            <groupId>org.wso2.carbon</groupId>
+            <version>4.2.0</version>
+        </dependency>
+    </dependencies>
 </project>

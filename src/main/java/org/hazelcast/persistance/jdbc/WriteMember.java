@@ -14,6 +14,6 @@ public class WriteMember {
 		IMap<Long, Person> personMap = hz.getMap("personMap");
 		personMap.put(1L, new Person("Pubudu"));
 		personMap.put(2L, new Person("lasal"));
-		System.exit(0);
+		System.exit(0);       // Terminating HZ instant
 	}
 }
