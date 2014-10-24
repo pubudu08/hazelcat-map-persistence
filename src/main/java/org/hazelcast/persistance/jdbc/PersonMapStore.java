@@ -16,7 +16,7 @@ import java.util.Set;
 import static java.lang.String.format;
 
 /**
- * This is a sample application which will demostrates how Hazelcast Map Persistence works
+ * This is a sample application which will demonstrates how Hazelcast Map Persistence works
  * Created by Pubudu Dissanayake on 10/23/14.
  * pubudud@wso2.com
  */

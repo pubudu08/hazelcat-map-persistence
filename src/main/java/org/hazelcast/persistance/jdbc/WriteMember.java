@@ -5,6 +5,8 @@ import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
 
 /**
+ * Hz instance will put values to the HZ map although behind the code it will insert values to the
+ * configured DB. And it will get terminated
  * Created by Pubudu Dissanayake on 10/23/14.
  * pubudud@wso2.com
  */
