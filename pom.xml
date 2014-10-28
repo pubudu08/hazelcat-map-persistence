@@ -23,7 +23,6 @@
         </repository>
     </repositories>
 
-
     <dependencies>
         <dependency>
             <groupId>com.hazelcast</groupId>
