@@ -26,7 +26,7 @@ import java.util.Map;
 /**
  * New Hazelcast instant will read values from the DB itself and will populate the map
  * Created by Pubudu Dissanayake on 10/23/14.
- * pubudud@wso2.com
+ *
  */
 public class ReadMember {
 	public static void main(String[] args) throws InterruptedException {

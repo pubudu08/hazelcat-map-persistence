@@ -21,7 +21,7 @@ import java.io.Serializable;
 
 /**
  * Created by Pubudu Dissanayake on 10/23/14.
- * pubudud@wso2.com
+ *
  */
 public class Person implements Serializable {
 	public String name;
