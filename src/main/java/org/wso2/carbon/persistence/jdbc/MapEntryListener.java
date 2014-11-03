@@ -16,33 +16,36 @@
  *  under the License.
  */
 
-package org.hazelcast.persistance.jdbc;
+package org.wso2.carbon.persistence.jdbc;
 
 import com.hazelcast.core.EntryEvent;
 import com.hazelcast.core.EntryListener;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * Created by Pubudu Dissanayake on 11/3/14.
  * pubudud@wso2.com
  */
 public class MapEntryListener implements EntryListener<Long,Person> {
+	private static Log LOGGER = LogFactory.getLog(MapEntryListener.class);
 	@Override
 	public void entryAdded(EntryEvent<Long, Person> longPersonEntryEvent) {
-		System.out.println("*Added Entry " + longPersonEntryEvent);
+		LOGGER.info("*Added Entry " + longPersonEntryEvent);
 	}
 
 	@Override
 	public void entryRemoved(EntryEvent<Long, Person> longPersonEntryEvent) {
-		System.out.println("*Removed Entry " + longPersonEntryEvent);
+		LOGGER.info("*Removed Entry " + longPersonEntryEvent);
 	}
 
 	@Override
 	public void entryUpdated(EntryEvent<Long, Person> longPersonEntryEvent) {
-		System.out.println("*Updated Entry " + longPersonEntryEvent);
+		LOGGER.info("*Updated Entry " + longPersonEntryEvent);
 	}
 
 	@Override
 	public void entryEvicted(EntryEvent<Long, Person> longPersonEntryEvent) {
-		System.out.println("*Evicted Entry " + longPersonEntryEvent);
+		LOGGER.info("*Evicted Entry " + longPersonEntryEvent);
 	}
 }

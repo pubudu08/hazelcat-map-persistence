@@ -15,7 +15,7 @@
 * specific language governing permissions and limitations
 * under the License.
 */
-package org.hazelcast.persistance.jdbc;
+package org.wso2.carbon.persistence.jdbc;
 
 import com.hazelcast.core.MapStore;
 import org.apache.commons.logging.Log;
@@ -50,7 +50,7 @@ public class PersonMapStore implements MapStore<Long, Person>, SQLQuery {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} catch (ClassNotFoundException e) {
-			LOGGER.error("Where is my MySQL JDBC Driver?", e);
+			LOGGER.error("*Where is my MySQL JDBC Driver?", e);
 		}
 	}
 
@@ -73,13 +73,12 @@ public class PersonMapStore implements MapStore<Long, Person>, SQLQuery {
 
 	@Override
 	public void delete(Long key) {
-		LOGGER.info("Deleted entry:" + key);
+		LOGGER.info("*Deleted entry Key:" + key);
 		try {
 			connection.createStatement().executeUpdate(format(DELETE_KEY, key));
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
-
 	}
 
 	@Override

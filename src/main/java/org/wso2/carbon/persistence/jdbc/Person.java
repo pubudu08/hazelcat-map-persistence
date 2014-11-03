@@ -15,7 +15,7 @@
 * specific language governing permissions and limitations
 * under the License.
 */
-package org.hazelcast.persistance.jdbc;
+package org.wso2.carbon.persistence.jdbc;
 
 import java.io.Serializable;
 
@@ -31,6 +31,6 @@ public class Person implements Serializable {
 	}
 
 	public String toString() {
-		return "Person{name'" + name + "'}";
+		return "Person { name'" + name + "'}";
 	}
 }
