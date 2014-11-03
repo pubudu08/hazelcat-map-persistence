@@ -35,9 +35,8 @@ import static java.lang.String.format;
 /**
  * This is a sample application which will demonstrates how Hazelcast Map Persistence works
  * Created by Pubudu Dissanayake on 10/23/14.
- *
  */
-public class PersonMapStore implements MapStore<Long, Person>, SQLQuery {
+public class PersonMapStore implements MapStore<Long, Person> {
 	private Log LOGGER = LogFactory.getLog(PersonMapStore.class);
 	private Connection connection = null;
 
@@ -57,7 +56,8 @@ public class PersonMapStore implements MapStore<Long, Person>, SQLQuery {
 	@Override
 	public void store(Long key, Person person) {
 		try {
-			connection.createStatement().executeUpdate(format(INSERT_QUERY, key, person.name));
+			connection.createStatement().executeUpdate(format(SQLQuery.INSERT_QUERY, key,
+			  person.name));
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -75,7 +75,7 @@ public class PersonMapStore implements MapStore<Long, Person>, SQLQuery {
 	public void delete(Long key) {
 		LOGGER.info("*Deleted entry Key:" + key);
 		try {
-			connection.createStatement().executeUpdate(format(DELETE_KEY, key));
+			connection.createStatement().executeUpdate(format(SQLQuery.DELETE_KEY, key));
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -91,8 +91,8 @@ public class PersonMapStore implements MapStore<Long, Person>, SQLQuery {
 	@Override
 	public Person load(Long aLong) {
 		try {
-			ResultSet resultSet = connection.createStatement().executeQuery(format(SELECT_QUERY,
-			  aLong));
+			ResultSet resultSet = connection.createStatement().executeQuery(format(SQLQuery
+			  .SELECT_QUERY, aLong));
 			try {
 				if (!resultSet.next()) {
 					return null;
