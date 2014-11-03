@@ -26,12 +26,12 @@ import java.util.Map;
 /**
  * New Hazelcast instant will read values from the DB itself and will populate the map
  * Created by Pubudu Dissanayake on 10/23/14.
- *
  */
 public class ReadMember {
 	public static void main(String[] args) throws InterruptedException {
 		HazelcastInstance hz = Hazelcast.newHazelcastInstance();
 		IMap<Long, Person> personMap = hz.getMap("personMap");
+		personMap.addEntryListener(new MapEntryListener(),true);
 		personMap.get(1L);
 		personMap.remove(2L);
 		for (Map.Entry<Long, Person> entry : personMap.entrySet()) {
